@@ -24,7 +24,7 @@ def nqr(x, y, tau, sigma, penalty):
     ub = np.hstack((np.ones(len(x))*C*tau, np.ones(len(x))*np.Inf))
     A = np.hstack((np.ones(len(x)), np.zeros(len(x))))
     b = np.zeros(1)
-    res = solve_qp(P=P, q=q, A=A, b=b, lb=lb, ub=ub)
+    res = solve_qp(P=P, q=q, A=A, b=b, lb=lb, ub=ub, solver="quadprog")
     alpha = res[:len(x)]
     beta = res[len(x):]
     for i in range(len(x)):
@@ -105,7 +105,7 @@ def quant_reg(tads, tads_shuffle, max_sz, min_sz, significance, lmda):
     import datetime
     time = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
     # plt.savefig('/storage/home/q/qjz5084/work/scOnTAD/trash/figures/'+time+'.pdf', bbox_inches='tight')
-    print('tads_num: %d; bds_num: %d' % (len(idx_out), len(np.unique(tads[idx_out, :2]))))
+    # print('tads_num: %d; bds_num: %d' % (len(idx_out), len(np.unique(tads[idx_out, :2]))))
     plt.show()
     plt.close()
     if left == 0.1 or right == 1:

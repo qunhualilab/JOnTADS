@@ -1,6 +1,6 @@
 from data_process import load_mat, get_shuffle_mat
 from get_bds import get_bds, select_bds
-from dp import get_dp_mat, get_tads, moving_average
+from dp import get_dp_mat, get_tads
 from quant_reg import quant_reg
 import numpy as np
 import time
@@ -159,7 +159,7 @@ def get_args():
 def main():
     args = get_args()
     np.random.seed(args.seed)
-    JOnTAD(args.file_name, args.output,
+    JOnTADS(args.file_name, args.output,
                args.max_sz, args.min_sz,
                args.significance, args.percentile,
                args.num_ft_cuts, args.lmda)

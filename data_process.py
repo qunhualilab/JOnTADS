@@ -64,7 +64,10 @@ def shuffle(mat, max_sz):
     mat_shuffle = mat.copy()
     l = mat_shuffle.shape[0]
     for i in range(2*max_sz):
-        np.random.shuffle(np.diag(mat_shuffle, i))
+        diag = np.diag(mat_shuffle, i)
+        diag.setflags(write=True)
+        np.random.shuffle(diag)
+        #np.random.shuffle(np.diag(mat_shuffle, i))
     for i in range(l):
         for j in range(i+1, min(l, i+2*max_sz)):
             mat_shuffle[j, i] = mat_shuffle[i, j]

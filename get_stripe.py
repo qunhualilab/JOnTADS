@@ -1,6 +1,6 @@
 from data_process import load_mat, get_shuffle_mat
-from get_bds import get_bds, pool_select_bds, select_bds
-from dp import get_dp_mat, get_tads, moving_average
+from get_bds import get_bds, select_bds
+from dp import get_dp_mat, get_tads
 from quant_reg import quant_reg
 import numpy as np
 import time
