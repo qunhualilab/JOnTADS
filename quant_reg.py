@@ -95,8 +95,8 @@ def quant_reg(tads, tads_shuffle, max_sz, min_sz, significance, lmda):
             plt.show()
             plt.close()
             return idx, curve
-        if np.abs(num_shuffle / num - significance) < diff:
-            diff = np.abs(num_shuffle / num - significance)
+        if np.abs(num_shuffle / (num_shuffle+num) - significance) < diff:
+            diff = np.abs(num_shuffle / (num_shuffle+num) - significance)
             idx_out = idx
             curve_out = curve
 
