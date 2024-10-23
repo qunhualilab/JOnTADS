@@ -1,3 +1,5 @@
+import os
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from data_process import load_mat, get_shuffle_mat
 from get_bds import get_bds, select_bds
 from dp import get_dp_mat, get_tads
@@ -6,6 +8,7 @@ import numpy as np
 import time
 import argparse
 from get_stripe import get_stripe
+
 
 def JOnTADS_one(file_name, output, max_sz, min_sz, significance, percentile, num_ft_cuts, lmda):
     print('Load contact matrix and shuffle it, spend time: ')
