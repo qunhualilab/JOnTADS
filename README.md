@@ -79,7 +79,7 @@ where the stripe extends from `(x1, y1)` to `(x2, y2)`.
 - **`-MAXSZ`**: Maximum size of TADs allowed, default 200.
 - **`-MINSZ`**: Minimum size of TADs allowed, default 7.
 - **`--stripe`**: Set to `True` to enable stripe detection.
-- **`-C`**: (When `stripe' is set to True) Chromosome number for stripe calling, e.g. 18.
+- **`--chr`**: (When `stripe' is set to True) Chromosome number for stripe calling, e.g. 18.
 - **`--stripe_output`**: (When `stripe' is set to True) Output file for stripe calling results.
 
 ## Contact
