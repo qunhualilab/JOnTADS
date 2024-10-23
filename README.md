@@ -9,8 +9,6 @@ pip install numpy==1.23.5
 
 pip install scipy==1.12.0
 
-pip install sklearn==1.1.3
-
 pip install qpsolvers==2.7.3
 
 Go to the repository of this folder
@@ -27,4 +25,4 @@ python JOnTADS.py -F ./data/ES_rep1.chr18 ./data/ES_rep2.chr18 ./data/ME_rep1.ch
 
 Stripe calling:
 
-python get_stripe.py -F ./data/chr18.csv -O ./results/chr18.csv.stripe -C 18
+python JOnTADS.py -F ./data/chr18.csv -O ./results/chr18.csv.tad --stripe_output ./results/chr18.csv.stripe -C 18
