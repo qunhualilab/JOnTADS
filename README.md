@@ -15,10 +15,8 @@ pip install qpsolvers==2.7.3
 pip install JOnTADS
 ```
 
-## Usage
+## Test Run
 Suppose you are at the folder of this README file.
-
-### Test Run
 #### Single Sample Run
 To identify TADs from a single sample, use the following command:
 ```sh
@@ -37,15 +35,19 @@ To call stripes in addition to TADs:
 JOnTADS -F ./data/chr18.csv -O ./results/chr18.csv.tad --stripe True --stripe_output ./results/chr18.csv.stripe --chr 18
 ```
 
-You can also run JOnTADS in your terminal via
+## Usage
+You can run JOnTADS in your terminal via
+```sh
+JOnTADS -F ./data/chr18.csv -O ./results/chr18.csv.tad --stripe True --stripe_output ./results/chr18.csv.stripe --chr 18
+```
+or
 ```sh
 python JOnTADS.py -F ./data/chr18.csv -O ./results/chr18.csv.tad --stripe True --stripe_output ./results/chr18.csv.stripe --chr 18
 ```
-
 or in your python file via
 ```sh
 from JOnTADS import JOnTADS, get_stripe
-JOnTADS(file_name, output)
+JOnTADS(file_names, outputs)
 stripes = get_stripe(file_name, chr_num)
 ```
 
