@@ -1,5 +1,4 @@
 import numpy as np
-import bisect
 import multiprocessing
 
 def maximize_sum_ft(bds, ft, interval, pos):
