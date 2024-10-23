@@ -37,6 +37,18 @@ To call stripes in addition to TADs:
 JOnTADS -F ./data/chr18.csv -O ./results/chr18.csv.tad --stripe True --stripe_output ./results/chr18.csv.stripe --chr 18
 ```
 
+You can also run JOnTADS in your terminal via
+```sh
+python JOnTADS.py -F ./data/chr18.csv -O ./results/chr18.csv.tad --stripe True --stripe_output ./results/chr18.csv.stripe --chr 18
+```
+
+or in your python file via
+```sh
+from JOnTADS import JOnTADS, get_stripe
+JOnTADS(file_name, output)
+stripes = get_stripe(file_name, chr_num)
+```
+
 ## Input and Output Format
 
 #### Input Format
