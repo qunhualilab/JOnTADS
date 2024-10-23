@@ -47,7 +47,7 @@ python JOnTADS.py -F ./data/chr18.csv -O ./results/chr18.csv.tad --stripe True -
 or in your python file via
 ```sh
 from JOnTADS import JOnTADS, get_stripe
-JOnTADS(file_names, outputs)
+tads = JOnTADS(file_names, outputs)
 stripes = get_stripe(file_name, chr_num)
 ```
 
