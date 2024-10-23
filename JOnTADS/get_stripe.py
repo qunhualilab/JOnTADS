@@ -83,7 +83,7 @@ def _get_stripe(mat, bds, min_sz=7, max_sz=200, p=1, threshold=0.1, mean_thresho
             stripe.append(stripe_v)
     return stripe
 
-def get_stripe(file_name, min_sz=7, max_sz=200, p=1, threshold=0.1, mean_threshold=0.1):
+def get_stripe(file_name, chr_num, min_sz=7, max_sz=200, p=1, threshold=0.1, mean_threshold=0.1):
     mat, cum_mat = load_mat(file_name, max_sz)
     
     bds = np.arange(len(mat))
@@ -92,9 +92,9 @@ def get_stripe(file_name, min_sz=7, max_sz=200, p=1, threshold=0.1, mean_thresho
     res = []
     for stripe in stripes:
         if len(stripe[0]) == 1:
-            res.append(['chr'+args.chr, stripe[0][0], stripe[0][0], 'chr'+args.chr, stripe[1][0], stripe[1][1]])
+            res.append(['chr'+str(chr_num), stripe[0][0], stripe[0][0], 'chr'+chr_num, stripe[1][0], stripe[1][1]])
         else:
-            res.append(['chr'+args.chr, stripe[0][0], stripe[0][1], 'chr'+args.chr, stripe[1][0], stripe[1][0]])
+            res.append(['chr'+str(chr_num), stripe[0][0], stripe[0][1], 'chr'+chr_num, stripe[1][0], stripe[1][0]])
     return res
 
 if __name__ == '__main__':
@@ -110,6 +110,6 @@ if __name__ == '__main__':
     parser.add_argument('-P', '--p', type=float, default=1)
     parser.add_argument('-T', '--threshold', type=float, default=0.1)
     args = parser.parse_args()
-    stripes = get_stripe(args.file_name, max_sz=args.max_sz, min_sz=args.min_sz, p=args.p, threshold=args.threshold, mean_threshold=args.threshold)
+    stripes = get_stripe(args.file_name, chr_num=args.chr, max_sz=args.max_sz, min_sz=args.min_sz, p=args.p, threshold=args.threshold, mean_threshold=args.threshold)
 
     np.savetxt(args.output, stripes, fmt='%s', delimiter='\t')
