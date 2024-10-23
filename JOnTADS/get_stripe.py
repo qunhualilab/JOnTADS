@@ -89,8 +89,13 @@ def get_stripe(file_name, min_sz=7, max_sz=200, p=1, threshold=0.1, mean_thresho
     bds = np.arange(len(mat))
     
     stripes = _get_stripe(mat, bds, min_sz, max_sz, p, threshold, mean_threshold)
-    
-    return stripes
+    res = []
+    for stripe in stripes:
+        if len(stripe[0]) == 1:
+            res.append(['chr'+args.chr, stripe[0][0], stripe[0][0], 'chr'+args.chr, stripe[1][0], stripe[1][1]])
+        else:
+            res.append(['chr'+args.chr, stripe[0][0], stripe[0][1], 'chr'+args.chr, stripe[1][0], stripe[1][0]])
+    return res
 
 if __name__ == '__main__':
     import argparse
@@ -107,10 +112,4 @@ if __name__ == '__main__':
     args = parser.parse_args()
     stripes = get_stripe(args.file_name, max_sz=args.max_sz, min_sz=args.min_sz, p=args.p, threshold=args.threshold, mean_threshold=args.threshold)
 
-    res = []
-    for stripe in stripes:
-        if len(stripe[0]) == 1:
-            res.append(['chr'+args.chr, stripe[0][0], stripe[0][0], 'chr'+args.chr, stripe[1][0], stripe[1][1]])
-        else:
-            res.append(['chr'+args.chr, stripe[0][0], stripe[0][1], 'chr'+args.chr, stripe[1][0], stripe[1][0]])
-    np.savetxt(args.output, res, fmt='%s', delimiter='\t')
+    np.savetxt(args.output, stripes, fmt='%s', delimiter='\t')
