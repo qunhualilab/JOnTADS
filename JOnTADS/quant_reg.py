@@ -1,5 +1,4 @@
 import numpy as np
-import statsmodels.formula.api as smf
 import matplotlib.pyplot as plt
 from scipy.stats import norm
 from qpsolvers import solve_qp
