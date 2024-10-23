@@ -138,8 +138,13 @@ def optim(data):
     return res.x
 
 def _get_bds(diag_ft_diff, diag_ft_diff_shuffle, percentile):
-    #tau, sigma1, sigma2 = gmm(diag_ft_diff)
     tau, sigma1, sigma2 = optim(diag_ft_diff)
+    if sigma2 > np.max(diag_ft_diff):
+        tau, sigma2 = 1, 0
+    if sigma1 > np.max(diag_ft_diff):
+        tau, sigma1, sigma2 = 1, sigma2, 0
+    if sigma2 > sigma1:
+        tau, sigma1, sigma2 = 1-tau, sigma2, sigma1
     return np.where(diag_ft_diff >= (2*sigma1+(1-tau)*sigma2))[0] + 1
 
 def para_bds(diag_diff, ft, interval, percentile):
