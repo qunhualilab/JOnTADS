@@ -174,14 +174,8 @@ def main():
     args = get_args()
     np.random.seed(args.seed)
     if args.stripe == True:
-        stripes = get_stripe(args.file_name[0], max_sz=args.max_sz, min_sz=args.min_sz, p=args.p, threshold=args.threshold, mean_threshold=args.threshold)
-        res = []
-        for stripe in stripes:
-            if len(stripe[0]) == 1:
-                res.append(['chr'+args.chr, stripe[0][0], stripe[0][0], 'chr'+args.chr, stripe[1][0], stripe[1][1]])
-            else:
-                res.append(['chr'+args.chr, stripe[0][0], stripe[0][1], 'chr'+args.chr, stripe[1][0], stripe[1][0]])
-        np.savetxt(args.stripe_output, res, fmt='%s', delimiter='\t')
+        stripes = get_stripe(args.file_name[0], chr_num=args.chr, max_sz=args.max_sz, min_sz=args.min_sz, p=args.p, threshold=args.threshold, mean_threshold=args.threshold)
+        np.savetxt(args.stripe_output, stripes, fmt='%s', delimiter='\t')
     print('Finished stripe identification.')
     np.random.seed(args.seed)
     JOnTADS(args.file_name, args.output,
