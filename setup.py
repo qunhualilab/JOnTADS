@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='JOnTADS',
-    version='0.1',
+    version='0.2',
     author='Qiuhai Zeng',
     author_email='qiuhai.stat@gmail.com',
     description='JOnTADS: a unified caller for TADs and stripes in Hi-C data',
@@ -18,7 +18,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'JOnTADS=JOnTADS:main',  # "script_name=package.module:function"
+            'JOnTADS=JOnTADS.main:main',  # "script_name=package.module:function"
         ],
     },
     url='https://github.com/qunhualilab/JOnTADS',
