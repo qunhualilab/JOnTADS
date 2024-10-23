@@ -5,6 +5,7 @@ from quant_reg import quant_reg
 import numpy as np
 import time
 import argparse
+from get_stripe import get_stripe
 
 def JOnTADS_one(file_name, output, max_sz, min_sz, significance, percentile, num_ft_cuts, lmda):
     print('Load contact matrix and shuffle it, spend time: ')
@@ -139,25 +140,46 @@ def get_args():
                         help='Maximum size of TADs')
     parser.add_argument('-MINSZ', '--min_sz', type=int, default=7,
                         help='Minimum size of TADs')
-    parser.add_argument('-S', '--significance', type=float, default=0.1,
+    parser.add_argument('--significance', type=float, default=0.1,
                         help='Significance for filtering TADs and boundaries')
-    parser.add_argument('-P', '--percentile', type=float, default=90,
+    parser.add_argument('--percentile', type=float, default=90,
                         help='Percentile of boundaries considered')
-    parser.add_argument('-NFTC', '--num_ft_cuts', type=int, default=5,
+    parser.add_argument('--num_ft_cuts', type=int, default=5,
                         help='Number of feature cut points')
-    parser.add_argument('-NRGC', '--num_rg_cuts', type=int, default=5,
+    parser.add_argument('--num_rg_cuts', type=int, default=5,
                         help='Number of regression cut points')
-    parser.add_argument('-SEED', '--seed', type=int, default=0,
+    parser.add_argument('--seed', type=int, default=0,
                         help='Initialize the random number generator')
-    parser.add_argument('-L', '--lmda', type=float, default=0.001,
+    parser.add_argument('--lmda', type=float, default=0.001,
                         help='Lambda of L1 norm in nonparametric quantile regression')
-    parser.add_argument('-M', '--method', type=str, default='nqr2',
-                        help='Nonparametric quantile regression with monotonic constraint')
+
+    parser.add_argument('--stripe', type=bool, default=False,
+                        help='Call stripes or not')
+    parser.add_argument('--stripe_file_name', type=str, default='',
+                        help='Input file for calling stripes')
+    parser.add_argument('--stripe_output', type=str, default='',
+                        help='Output file to save stripe results')
+    parser.add_argument('--chr', type=str, default='',
+                        help='Chromosome information for calling stripes')
+    parser.add_argument('--p', type=float, default=1,
+                        help='Exponent for measuring similarity')
+    parser.add_argument('--threshold', type=float, default=0.1,
+                        help='Threshold to call stripes')
     args = parser.parse_args()
     return args
 
 def main():
     args = get_args()
+    np.random.seed(args.seed)
+    if args.stripe == True:
+        stripes = get_stripe(args.stripe_file_name, max_sz=args.max_sz, min_sz=args.min_sz, p=args.p, threshold=args.threshold, mean_threshold=args.threshold)
+        res = []
+        for stripe in stripes:
+            if len(stripe[0]) == 1:
+                res.append(['chr'+args.chr, stripe[0][0], stripe[0][0], 'chr'+args.chr, stripe[1][0], stripe[1][1]])
+            else:
+                res.append(['chr'+args.chr, stripe[0][0], stripe[0][1], 'chr'+args.chr, stripe[1][0], stripe[1][0]])
+        np.savetxt(args.stripe_output, res, fmt='%s', delimiter='\t')
     np.random.seed(args.seed)
     JOnTADS(args.file_name, args.output,
                args.max_sz, args.min_sz,
