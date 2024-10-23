@@ -182,6 +182,7 @@ def main():
             else:
                 res.append(['chr'+args.chr, stripe[0][0], stripe[0][1], 'chr'+args.chr, stripe[1][0], stripe[1][0]])
         np.savetxt(args.stripe_output, res, fmt='%s', delimiter='\t')
+    print('Finished stripe identification.')
     np.random.seed(args.seed)
     JOnTADS(args.file_name, args.output,
                args.max_sz, args.min_sz,
