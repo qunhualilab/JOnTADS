@@ -86,26 +86,24 @@ def quant_reg(tads, tads_shuffle, max_sz, min_sz, significance, lmda):
         elif num_shuffle / (num+num_shuffle) < significance:
             right = mid
         else:
-            plt.plot(tads[:, 3], tads[:, 2], '.')
-            plt.plot(np.arange(min_sz, max_sz+1), curve)
-            import datetime
-            time = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
-            plt.show()
-            plt.close()
+            #plt.plot(tads[:, 3], tads[:, 2], '.')
+            #plt.plot(np.arange(min_sz, max_sz+1), curve)
+            #import datetime
+            #time = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+            #plt.show()
+            #plt.close()
             return idx, curve
         if np.abs(num_shuffle / (num_shuffle+num) - significance) < diff:
             diff = np.abs(num_shuffle / (num_shuffle+num) - significance)
             idx_out = idx
             curve_out = curve
 
-    plt.plot(tads[:, 3], tads[:, 2], '.')
-    plt.plot(np.arange(min_sz, max_sz+1), curve_out)
-    import datetime
-    time = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
-    # plt.savefig('/storage/home/q/qjz5084/work/scOnTAD/trash/figures/'+time+'.pdf', bbox_inches='tight')
-    # print('tads_num: %d; bds_num: %d' % (len(idx_out), len(np.unique(tads[idx_out, :2]))))
-    plt.show()
-    plt.close()
+    #plt.plot(tads[:, 3], tads[:, 2], '.')
+    #plt.plot(np.arange(min_sz, max_sz+1), curve_out)
+    #import datetime
+    #time = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+    #plt.show()
+    #plt.close()
     if left == 0.1 or right == 1:
         print('TADs might not exist.')
     return idx_out, curve_out
