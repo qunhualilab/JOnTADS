@@ -1,4 +1,4 @@
-# JOnTADS
+# JOnTADS: a unified caller for TADs and stripes in Hi-C data
 JOnTADS is a versatile tool for identifying Topologically Associating Domains (TADs) and stripes in various chromatin conformation capture data, including population Hi-C, single-109
 cell Hi-C and micro-C. It allows for easy analysis of Hi-C data across multiple samples and outputs results in a structured format.
 
