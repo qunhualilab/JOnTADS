@@ -3,15 +3,15 @@ A unified caller for TADs and stripes in various Hi-C data
 
 Dependencies:
 
-pip install numba
+pip install numba==0.56.4
 
-pip install numpy
+pip install numpy==1.23.5
 
-pip install scipy
+pip install scipy==1.12.0
 
-pip install sklearn
+pip install sklearn==1.1.3
 
-pip install qpsolvers==1.10.0
+pip install qpsolvers==2.7.3
 
 Go to the repository of this folder
 
