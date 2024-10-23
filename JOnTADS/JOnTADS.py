@@ -56,11 +56,12 @@ def JOnTADS_one(file_name, output, max_sz, min_sz, significance, percentile, num
     # save tads
     print('Save tads in the output file.')
     np.savetxt(output, tads, fmt='%d, %d, %.3g, %d')
+    return tads
 
 def JOnTADS(file_names, outputs, max_sz, min_sz, significance, percentile, num_ft_cuts, lmda):
     if len(file_names) == 1:
-        JOnTADS_one(file_names[0], outputs[0], max_sz, min_sz, significance, percentile, num_ft_cuts, lmda)
-        return 1
+        tads = JOnTADS_one(file_names[0], outputs[0], max_sz, min_sz, significance, percentile, num_ft_cuts, lmda)
+        return [tads]
     
     def declutter_bds(bds_all, mats, max_sz, min_sz):
         max_num = 0
@@ -133,6 +134,7 @@ def JOnTADS(file_names, outputs, max_sz, min_sz, significance, percentile, num_f
         
     for i in range(len(outputs)):
         np.savetxt(outputs[i], tads_all[i], fmt='%d, %d, %.3g, %d')
+    return tads_all
     
 def get_args():
     parser = argparse.ArgumentParser(description='Jointly identify nested TADs.')
