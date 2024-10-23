@@ -25,4 +25,4 @@ python JOnTADS.py -F ./data/ES_rep1.chr18 ./data/ES_rep2.chr18 ./data/ME_rep1.ch
 
 Stripe calling:
 
-python JOnTADS.py -F ./data/chr18.csv -O ./results/chr18.csv.tad --stripe_output ./results/chr18.csv.stripe -C 18
+python JOnTADS.py -F ./data/chr18.csv -O ./results/chr18.csv.tad --stripe_output ./results/chr18.csv.stripe -C 18 --stripe True
