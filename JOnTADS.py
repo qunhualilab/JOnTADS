@@ -155,8 +155,6 @@ def get_args():
 
     parser.add_argument('--stripe', type=bool, default=False,
                         help='Call stripes or not')
-    parser.add_argument('--stripe_file_name', type=str, default='',
-                        help='Input file for calling stripes')
     parser.add_argument('--stripe_output', type=str, default='',
                         help='Output file to save stripe results')
     parser.add_argument('--chr', type=str, default='',
@@ -172,7 +170,7 @@ def main():
     args = get_args()
     np.random.seed(args.seed)
     if args.stripe == True:
-        stripes = get_stripe(args.stripe_file_name, max_sz=args.max_sz, min_sz=args.min_sz, p=args.p, threshold=args.threshold, mean_threshold=args.threshold)
+        stripes = get_stripe(args.file_name[0], max_sz=args.max_sz, min_sz=args.min_sz, p=args.p, threshold=args.threshold, mean_threshold=args.threshold)
         res = []
         for stripe in stripes:
             if len(stripe[0]) == 1:
