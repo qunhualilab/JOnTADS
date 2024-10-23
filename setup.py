@@ -18,7 +18,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'JOnTADS=JOnTADS.JOnTADS:main',  # "script_name=package.module:function"
+            'JOnTADS=JOnTADS:main',  # "script_name=package.module:function"
         ],
     },
     url='https://github.com/qunhualilab/JOnTADS',
