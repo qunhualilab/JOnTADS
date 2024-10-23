@@ -5,7 +5,6 @@ from scipy.stats import norm
 from qpsolvers import solve_qp
 import scipy
 from scipy.spatial.distance import pdist, squareform
-from sklearn.metrics.pairwise import linear_kernel as lk
 
 def kernel(x1, x2, sigma):
     return np.exp((-((x1-x2)**2))/(2*sigma**2))
